@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: OAuth Playground
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1026355656018-bejktgldh40sluhq6u8lrtdscdj2u03j.apps.googleusercontent.com
+            client-secret: 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
+server:
+  servlet:
+    context-path: /api/v1
+
+logging:
+  level:
+    security: TRACE

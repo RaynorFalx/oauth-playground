@@ -8,6 +8,18 @@ spring:
           google:
             client-id: 1026355656018-bejktgldh40sluhq6u8lrtdscdj2u03j.apps.googleusercontent.com
             client-secret: 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
+  datasource:
+    url: jdbc:postgresql://localhost:5433/oauth-playground
+    password: admin
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 server:
   servlet:
     context-path: /api/v1

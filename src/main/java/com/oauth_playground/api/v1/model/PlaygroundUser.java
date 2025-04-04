@@ -1,6 +1,6 @@
-package com.oauth_playground.model;
+package com.oauth_playground.api.v1.model;
 
-import com.oauth_playground.model.enums.Role;
+import com.oauth_playground.api.v1.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

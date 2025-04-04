@@ -1,6 +1,6 @@
-package com.oauth_playground.handler;
+package com.oauth_playground.api.v1.handler;
 
-import com.oauth_playground.exception.ErrorResponse;
+import com.oauth_playground.api.v1.exception.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;

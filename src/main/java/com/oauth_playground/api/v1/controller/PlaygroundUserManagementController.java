@@ -1,16 +1,13 @@
-package com.oauth_playground.controller;
+package com.oauth_playground.api.v1.controller;
 
-import com.oauth_playground.record.PlaygroundUserDTO;
-import com.oauth_playground.service.PlaygroundUserServiceImpl;
+import com.oauth_playground.api.v1.record.PlaygroundUserDTO;
+import com.oauth_playground.api.v1.service.PlaygroundUserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Validated
 @RestController
@@ -19,6 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlaygroundUserManagementController {
 
     private final PlaygroundUserServiceImpl service;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PlaygroundUserDTO> getUser(@PathVariable long id) {
+        return new ResponseEntity<>(service.findUserById(id), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<String> createUser(@Valid @RequestBody PlaygroundUserDTO user) {

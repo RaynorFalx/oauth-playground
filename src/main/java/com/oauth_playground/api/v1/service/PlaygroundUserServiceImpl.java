@@ -1,11 +1,11 @@
-package com.oauth_playground.service;
+package com.oauth_playground.api.v1.service;
 
-import com.oauth_playground.mapper.PlaygroundUserMapper;
-import com.oauth_playground.model.PlaygroundUser;
-import com.oauth_playground.model.PlaygroundUser.PlaygroundUserBuilder;
-import com.oauth_playground.model.enums.Role;
-import com.oauth_playground.record.PlaygroundUserDTO;
-import com.oauth_playground.repository.PlaygroudUserRepository;
+import com.oauth_playground.api.v1.model.PlaygroundUser;
+import com.oauth_playground.api.v1.model.enums.Role;
+import com.oauth_playground.api.v1.repository.PlaygroudUserRepository;
+import com.oauth_playground.api.v1.mapper.PlaygroundUserMapper;
+import com.oauth_playground.api.v1.model.PlaygroundUser.PlaygroundUserBuilder;
+import com.oauth_playground.api.v1.record.PlaygroundUserDTO;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -25,21 +25,21 @@ public class PlaygroundUserServiceImpl implements PlaygroundService {
     @Override
     public PlaygroundUserDTO findUserById(Long id) {
         return mapper.toPlaygroundUserDTO(
-                repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usernot find with id:" +  id))
+                repository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id:" +  id))
         );
     }
 
     @Override
     public PlaygroundUserDTO findUserByEmail(String email) {
         return mapper.toPlaygroundUserDTO(
-                repository.findByUsername(email).orElseThrow(() -> new EntityNotFoundException("Usernot find with email:" +  email))
+                repository.findByUsername(email).orElseThrow(() -> new EntityNotFoundException("User not find with email:" +  email))
         );
     }
 
     @Override
     public PlaygroundUserDTO findUserByUsername(String username) {
         return mapper.toPlaygroundUserDTO(
-                repository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("Usernot find with username:" + username))
+                repository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("User not find with username:" + username))
         );
     }
 

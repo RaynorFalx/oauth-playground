@@ -1,6 +1,8 @@
 spring:
   application:
     name: OAuth Playground
+  profiles:
+    active: dev
   security:
     oauth2:
       client:
@@ -19,6 +21,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  h2:
+    console:
+      enabled: true
 
 server:
   servlet:

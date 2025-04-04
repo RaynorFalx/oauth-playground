@@ -1,10 +1,10 @@
-package com.oauth_playground.service;
+package com.oauth_playground.api.v1.service;
 
-import com.oauth_playground.record.PlaygroundUserDTO;
+import com.oauth_playground.api.v1.record.PlaygroundUserDTO;
 
 public interface PlaygroundService {
     PlaygroundUserDTO findUserById(Long id);
     PlaygroundUserDTO findUserByEmail(String email);
     PlaygroundUserDTO findUserByUsername(String username);
-    void createUser(com.oauth_playground.record.PlaygroundUserDTO user);
+    void createUser(PlaygroundUserDTO user);
 }

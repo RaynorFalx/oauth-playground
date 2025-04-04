@@ -1,4 +1,4 @@
-package com.oauth_playground.exception;
+package com.oauth_playground.api.v1.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.oauth-playground</groupId>
-	<artifactId>develop</artifactId>
+	<artifactId>oauth-playground</artifactId>
 	<version>1.0.0</version>
 	<name>oauth-playground</name>
 	<description>Implementation of the OAuth2 Concept using Spring Security and Google Auth</description>
@@ -83,6 +83,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.2.220</version>
 		</dependency>
 	</dependencies>
 

@@ -1,9 +1,11 @@
-package com.oauth_playground.record;
+package com.oauth_playground.api.v1.record;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public record PlaygroundUserDTO(
         @NotBlank(message = "Username cannot be blank")
         String username,

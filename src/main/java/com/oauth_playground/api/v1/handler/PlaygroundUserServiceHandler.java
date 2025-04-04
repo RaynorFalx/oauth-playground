@@ -1,7 +1,8 @@
-package com.oauth_playground.handler;
+package com.oauth_playground.api.v1.handler;
 
-import com.oauth_playground.exception.ErrorResponse;
+import com.oauth_playground.api.v1.exception.ErrorResponse;
 import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,6 +19,14 @@ public class PlaygroundUserServiceHandler {
         return new ResponseEntity<>(
                 new ErrorResponse(HttpStatus.CONFLICT.value(), LocalDateTime.now(), List.of(ex.getMessage())),
                 HttpStatus.CONFLICT
+        );
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleEntityExistsException(EntityNotFoundException ex) {
+        return new ResponseEntity<>(
+                new ErrorResponse(HttpStatus.NOT_FOUND.value(), LocalDateTime.now(), List.of(ex.getMessage())),
+                HttpStatus.NOT_FOUND
         );
     }
 }

@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "4f873377-93e8-46fd-8739-ffa58b452796",
+		"name": "OAuth Playground",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6087120",
+		"_collection_link": "https://dark-satellite-185748.postman.co/workspace/My-Workspace~c8e796c3-34de-4e7a-8d56-177f1224bf44/collection/6087120-4f873377-93e8-46fd-8739-ffa58b452796?action=share&source=collection_link&creator=6087120"
+	},
+	"item": [
+		{
+			"name": "api/v1",
+			"item": [
+				{
+					"name": "user-management",
+					"item": [
+						{
+							"name": "tests-cases",
+							"item": [
+								{
+									"name": "create-user",
+									"item": [
+										{
+											"name": "Create User - Success",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status code is 200\", function() {\r",
+															"    pm.response.to.have.status(201);\r",
+															"});\r",
+															"\r",
+															"const requestBody = JSON.parse(pm.request.body.raw);\r",
+															"pm.environment.set(\"registered_email\", requestBody.email);\r",
+															"pm.environment.set(\"registered_username\", requestBody.username);"
+														],
+														"type": "text/javascript",
+														"packages": {}
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"password\": \"{{$randomPassword}}\",\r\n  \"email\": \"{{$randomEmail}}\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUri}}/api/v1/user-management",
+													"host": [
+														"{{baseUri}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-management"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create User - Duplicated Email",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status code is 409 for duplicate email\", function() {\r",
+															"    pm.response.to.have.status(409);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Error message about duplicate email\", function() {\r",
+															"    const jsonData = pm.response.json();\r",
+															"    \r",
+															"    pm.expect(jsonData).to.have.property('messages');\r",
+															"    pm.expect(jsonData.messages).to.be.an('array').that.is.not.empty;\r",
+															"    \r",
+															"    pm.expect(jsonData.messages[0]).to.include(\"already exists\");\r",
+															"    pm.expect(jsonData.messages[0]).to.include(\"Email\");\r",
+															"});"
+														],
+														"type": "text/javascript",
+														"packages": {}
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"password\": \"{{$randomPassword}}\",\r\n  \"email\": \"{{registered_email}}\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUri}}/api/v1/user-management",
+													"host": [
+														"{{baseUri}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-management"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create User - Duplicated Username",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status code is 409 for duplicate username\", function() {\r",
+															"    pm.response.to.have.status(409);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Error message about duplicate email\", function() {\r",
+															"    const jsonData = pm.response.json();\r",
+															"    \r",
+															"    // Verifica se a resposta tem a estrutura esperada\r",
+															"    pm.expect(jsonData).to.have.property('messages');\r",
+															"    pm.expect(jsonData.messages).to.be.an('array').that.is.not.empty;\r",
+															"    \r",
+															"    // Verifica a mensagem de erro específica\r",
+															"    pm.expect(jsonData.messages[0]).to.include(\"already exists\");\r",
+															"    pm.expect(jsonData.messages[0]).to.include(\"Username\");\r",
+															"});"
+														],
+														"type": "text/javascript",
+														"packages": {}
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"username\": \"{{registered_username}}\",\r\n  \"password\": \"{{$randomPassword}}\",\r\n  \"email\": \"{{$randomEmail}}\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUri}}/api/v1/user-management",
+													"host": [
+														"{{baseUri}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-management"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "get-user",
+									"item": [
+										{
+											"name": "Get User By ID - Success",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status code is 200\", function() {\r",
+															"    pm.response.to.have.status(200);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Response has correct structure\", function() {\r",
+															"    const jsonData = pm.response.json();\r",
+															"    pm.expect(jsonData).to.have.all.keys(\r",
+															"        'username',\r",
+															"        'password',\r",
+															"        'email',\r",
+															"        'isAdmin'\r",
+															"    );\r",
+															"});"
+														],
+														"type": "text/javascript",
+														"packages": {}
+													}
+												}
+											],
+											"request": {
+												"auth": {
+													"type": "noauth"
+												},
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUri}}/api/v1/user-management/1",
+													"host": [
+														"{{baseUri}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-management",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get User By ID - Not Found",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Status code is 404 for user not found\", function() {\r",
+															"    pm.response.to.have.status(404);\r",
+															"});\r",
+															"\r",
+															"pm.test(\"Error message about user not found\", function() {\r",
+															"    const jsonData = pm.response.json();\r",
+															"    \r",
+															"    pm.expect(jsonData).to.have.property('messages');\r",
+															"    pm.expect(jsonData.messages).to.be.an('array').that.is.not.empty;\r",
+															"    \r",
+															"    pm.expect(jsonData.messages[0]).to.include(\"not found with id\");\r",
+															"    pm.expect(jsonData.messages[0]).to.include(\"User\");\r",
+															"});"
+														],
+														"type": "text/javascript",
+														"packages": {}
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.environment.set(\"randomInt\", 999999);"
+														],
+														"type": "text/javascript",
+														"packages": {}
+													}
+												}
+											],
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUri}}/api/v1/user-management/{{randomInt}}",
+													"host": [
+														"{{baseUri}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"user-management",
+														"{{randomInt}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Create User",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"a1\",\r\n  \"password\": \"a1\",\r\n  \"email\": \"a1@mail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUri}}/api/v1/user-management",
+									"host": [
+										"{{baseUri}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-management"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By ID",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUri}}/api/v1/user-management/1",
+									"host": [
+										"{{baseUri}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user-management",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUri",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

@@ -1,4 +1,4 @@
-package com.oauth_playground.model.enums;
+package com.oauth_playground.api.v1.model.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

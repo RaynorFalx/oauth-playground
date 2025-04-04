@@ -1,4 +1,4 @@
-package com.oauth_playground.config;
+package com.oauth_playground.api.v1.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,8 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/", "/login", "/error").permitAll();
+                    auth.requestMatchers("/", "/login", "/h2-console/**").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/user-management/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/user-management").permitAll();
                     auth.anyRequest().authenticated();
                 })

@@ -1,6 +1,6 @@
-package com.oauth_playground.repository;
+package com.oauth_playground.api.v1.repository;
 
-import com.oauth_playground.model.PlaygroundUser;
+import com.oauth_playground.api.v1.model.PlaygroundUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

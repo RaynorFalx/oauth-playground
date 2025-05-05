@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class PlaygroundUserServiceImpl implements PlaygroundService {
+public class PlaygroundUserServiceImpl implements PlaygroundService{
 
     private final PlaygroundUserMapper mapper;
     private final PasswordEncoder passwordEncoder;

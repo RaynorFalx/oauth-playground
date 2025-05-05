@@ -11,8 +11,8 @@
 	<groupId>com.oauth-playground</groupId>
 	<artifactId>oauth-playground</artifactId>
 	<version>1.0.0</version>
-	<name>oauth-playground</name>
-	<description>Implementation of the OAuth2 Concept using Spring Security and Google Auth</description>
+	<name>Auth Playground</name>
+	<description>Implementation of an Authentication Server concept from the OAuth2 framework using Spring Security.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -33,7 +33,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+			<artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

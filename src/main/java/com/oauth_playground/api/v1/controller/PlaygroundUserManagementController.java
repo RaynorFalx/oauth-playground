@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RestController
 @AllArgsConstructor
-@RequestMapping("/user-management")
+@RequestMapping("/api/v1/user-management")
 public class PlaygroundUserManagementController {
 
     private final PlaygroundUserServiceImpl service;

@@ -3,13 +3,14 @@ spring:
     name: OAuth Playground
   profiles:
     active: dev
+  mvc:
+    converters:
+      preferred-json-mapper: jackson
   security:
     oauth2:
-      client:
-        registration:
-          google:
-            client-id: 1026355656018-bejktgldh40sluhq6u8lrtdscdj2u03j.apps.googleusercontent.com
-            client-secret: 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
+      authorizationserver:
+        issuer: http://auth-server:9000
+
   datasource:
     url: jdbc:postgresql://localhost:5433/oauth-playground
     password: admin
@@ -26,9 +27,12 @@ spring:
       enabled: true
 
 server:
-  servlet:
-    context-path: /api/v1
+  port: 9000
 
 logging:
   level:
-    security: TRACE
+    org:
+      springframework:
+        web: DEBUG
+        security: TRACE
+        validation: DEBUG
